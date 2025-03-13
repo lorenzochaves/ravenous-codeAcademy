@@ -1,8 +1,8 @@
-.business-list {
+.BusinessList {
     display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
+    flex-wrap: wrap; /* Allows wrapping for responsive design */
+    justify-content: center; /* Centers content horizontally */
+    gap: 20px; /* Spacing between business cards */
     padding: 20px;
   }
   

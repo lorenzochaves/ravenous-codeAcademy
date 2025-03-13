@@ -1,16 +1,15 @@
 import React from "react";
-import Business from "./business.js";
-import businesses from "../businesses"; // Import the hardcoded list
-import "./BusinessList.css"; // Create this file for styling
+import Business from "./business";
+import "./BusinessList.css";
 
-const BusinessList = () => {
+function BusinessList({ businesses }) {
   return (
-    <div className="business-list">
+    <div className="BusinessList">
       {businesses.map((business) => (
         <Business key={business.id} business={business} />
       ))}
     </div>
   );
-};
+}
 
 export default BusinessList;

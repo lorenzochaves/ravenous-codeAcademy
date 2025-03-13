@@ -1,25 +1,38 @@
-.business {
-    width: 250px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 15px;
-    text-align: center;
-  }
-  
-  .image-container img {
-    width: 100%;
-    border-radius: 10px;
-  }
-  
-  .business-information {
-    margin-top: 10px;
-  }
-  
-  .business-address, .business-reviews {
-    margin-bottom: 10px;
-  }
-  
-  .rating {
-    color: gold;
-  }
-  
+.Business {
+  width: 250px; /* Controls the width of each business card */
+  padding: 15px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.2s ease-in-out;
+}
+
+.Business:hover {
+  transform: scale(1.05); /* Subtle zoom effect on hover */
+}
+
+.Business img {
+  width: 100%; /* Makes sure the image adapts to the card width */
+  max-width: 200px; /* Prevents oversized images */
+  height: 150px; /* Ensures consistent image height */
+  object-fit: cover; /* Prevents distortion */
+  border-radius: 8px; /* Adds rounded corners */
+}
+
+.Business h2 {
+  font-size: 1.2rem;
+  margin: 10px 0;
+  color: #333;
+}
+
+.Business p {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 5px 0;
+}
+
+.Business p:last-child {
+  font-weight: bold;
+  color: #ff6600;
+}
