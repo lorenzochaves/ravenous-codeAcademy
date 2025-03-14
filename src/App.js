@@ -1,15 +1,14 @@
 import React, { useState } from "react";
-import "./App.css";
-import SearchBar from "./components/SearchBar";
 import BusinessList from "./components/BusinessList";
+import SearchBar from "./components/SearchBar";
+import "./App.css";
 
-// Mock data simulating API results
-const mockBusinesses = [
+const businesses = [
   {
     id: 1,
     imageSrc: "https://www.minhareceita.com.br/app/uploads/2022/03/estrogonofe-de-frango-seara-2.jpg",
-    name: "Joe's Pizza",
-    address: "123 Main St",
+    name: "Best Pizza",
+    address: "123 Pizza St",
     city: "New York",
     state: "NY",
     zipCode: "10001",
@@ -20,44 +19,45 @@ const mockBusinesses = [
   {
     id: 2,
     imageSrc: "https://www.receitasnestle.com.br/sites/default/files/srh_recipes/684a75a7a4b7b4631aa0d054bba6eaef.jpg",
-    name: "Burger Haven",
-    address: "456 Elm St",
-    city: "Los Angeles",
+    name: "Sushi House",
+    address: "456 Sushi Rd",
+    city: "San Francisco",
     state: "CA",
-    zipCode: "90012",
-    category: "Fast Food",
-    rating: 4.2,
+    zipCode: "94105",
+    category: "Japanese",
+    rating: 4.7,
     reviewCount: 120,
   },
   {
     id: 3,
     imageSrc: "https://donanena.com.br/wp-content/uploads/2023/07/lentilha-site.jpg",
-    name: "Sushi World",
-    address: "789 Oak St",
-    city: "San Francisco",
-    state: "CA",
-    zipCode: "94102",
-    category: "Japanese",
-    rating: 4.8,
-    reviewCount: 150,
-  },
+    name: "Taco Fiesta",
+    address: "789 Fiesta Blvd",
+    city: "Austin",
+    state: "TX",
+    zipCode: "73301",
+    category: "Mexican",
+    rating: 4.2,
+    reviewCount: 75,
+  }
 ];
 
-function App() {
-  const [businesses, setBusinesses] = useState(mockBusinesses); // Store business data in state
+const App = () => {
+  const [filteredBusinesses, setFilteredBusinesses] = useState(businesses);
 
   const searchYelp = (term, location, sortBy) => {
-    console.log(`Searching Yelp with: ${term}, ${location}, ${sortBy}`);
-    // This will later be updated to fetch businesses from the Yelp API
+    console.log(`Searching Yelp with ${term}, ${location}, ${sortBy}`);
+    // In the future, this function will make an API request.
+    setFilteredBusinesses(businesses); // Placeholder logic
   };
 
   return (
     <div className="App">
       <h1>Ravenous</h1>
       <SearchBar onSearch={searchYelp} />
-      <BusinessList businesses={businesses} />
+      <BusinessList businesses={filteredBusinesses} />
     </div>
   );
-}
+};
 
 export default App;

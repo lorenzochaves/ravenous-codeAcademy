@@ -13,7 +13,7 @@ const businesses = [
     },
     {
       id: 2,
-      imageSrc: "hhttps://www.receitasnestle.com.br/sites/default/files/srh_recipes/684a75a7a4b7b4631aa0d054bba6eaef.jpg",
+      imageSrc: "https://www.receitasnestle.com.br/sites/default/files/srh_recipes/684a75a7a4b7b4631aa0d054bba6eaef.jpg",
       name: "Sushi Heaven",
       address: "456 Ocean Drive",
       city: "Los Angeles",
