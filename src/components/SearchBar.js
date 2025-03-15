@@ -1,69 +1,55 @@
 import React, { useState } from "react";
 import "./SearchBar.css";
 
-const SearchBar = ({ onSearch }) => {
-  const [term, setTerm] = useState("");       // Search term input
-  const [location, setLocation] = useState(""); // Location input
-  const [sortBy, setSortBy] = useState("best_match"); // Sorting option
+const sortByOptions = {
+  "Best Match": "best_match",
+  "Highest Rated": "rating",
+  "Most Reviewed": "review_count",
+};
 
-  const sortOptions = {
-    "Best Match": "best_match",
-    "Highest Rated": "rating",
-    "Most Reviewed": "review_count",
+function SearchBar({ onSearch }) {
+  const [term, setTerm] = useState("");
+  const [location, setLocation] = useState("");
+  const [sortBy, setSortBy] = useState("best_match");
+
+  const getSortByClass = (sortOption) =>
+    sortBy === sortOption ? "active" : "";
+
+  const handleSortByChange = (sortOption) => setSortBy(sortOption);
+  const handleTermChange = (e) => setTerm(e.target.value);
+  const handleLocationChange = (e) => setLocation(e.target.value);
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (term.trim() === "" || location.trim() === "") {
+      alert("Por favor, preencha todos os campos.");
+      return;
+    }
+    onSearch(term, location, sortBy);
   };
-
-  // Highlight active sort option
-  const getSortClass = (option) => (sortBy === option ? "active" : "");
-
-  // Set sorting option
-  const handleSortChange = (option) => setSortBy(option);
-
-  // Handle input changes
-  const handleTermChange = (event) => setTerm(event.target.value);
-  const handleLocationChange = (event) => setLocation(event.target.value);
-
-  // Simulated search functionality
-// Simulated search functionality
-  const handleSearch = () => {
-  alert(`Searching Yelp with:\nTerm: ${term}\nLocation: ${location}\nSort By: ${sortBy}`);
-  onSearch(term, location, sortBy);
-  };
-
 
   return (
     <div className="SearchBar">
       <div className="SearchBar-sort-options">
-        {Object.keys(sortOptions).map((option) => (
-          <button
-            key={sortOptions[option]}
-            className={getSortClass(sortOptions[option])}
-            onClick={() => handleSortChange(sortOptions[option])}
+        {Object.keys(sortByOptions).map((sortOption) => (
+          <span
+            key={sortByOptions[sortOption]}
+            className={getSortByClass(sortByOptions[sortOption])}
+            onClick={() => handleSortByChange(sortByOptions[sortOption])}
           >
-            {option}
-          </button>
+            {sortOption}
+          </span>
         ))}
       </div>
-
       <div className="SearchBar-fields">
-        <input
-          type="text"
-          placeholder="Search Businesses"
-          value={term}
-          onChange={handleTermChange}
-        />
-        <input
-          type="text"
-          placeholder="Where?"
-          value={location}
-          onChange={handleLocationChange}
-        />
+        <input placeholder="Search Businesses" onChange={handleTermChange} />
+        <input placeholder="Where?" onChange={handleLocationChange} />
       </div>
-
-      <button className="SearchBar-submit" onClick={handleSearch}>
-        Let's Go
-      </button>
+      <div className="SearchBar-submit">
+        <button onClick={handleSearch}>Let's Go</button>
+      </div>
     </div>
   );
-};
+}
 
 export default SearchBar;
